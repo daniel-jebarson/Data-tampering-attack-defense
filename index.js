@@ -10,7 +10,6 @@ app.use(express.static("public"));
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 
 app.post("/check", (req, res) => {
-  // console.log("ok");
   if (req.body.items[0].hash == Encrypt.encryptor(req.body.items[0].price)) {
     res.redirect(307, "/create-checkout-session");
   } else {
@@ -48,7 +47,7 @@ app.post("/create-checkout-session", async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
-
+const PORT = process.env.PORT || 3000;
 app.listen(3000, () => {
-  console.log(`Running on localhost:3000`);
+  console.log(`Server is running in ${PORT}`);
 });
