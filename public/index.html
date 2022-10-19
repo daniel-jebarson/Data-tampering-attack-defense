@@ -50,7 +50,7 @@
         productsEl.innerHTML = products
             .map(
                 (product) => `
-        <div class="product">
+        <div class="product" onclick="checkout()">
             <div class="product-info">
                 <img src="${product.product_image_md}" alt="product-image">
                 <h4>${product.product_name}</h4>
