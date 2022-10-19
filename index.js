@@ -10,10 +10,14 @@ app.use(express.static("public"));
 const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 
 app.post("/check", (req, res) => {
-  if (req.body.items[0].hash == Encrypt.encryptor(req.body.items[0].price)) {
-    res.redirect(307, "/create-checkout-session");
+  if (req.body.items[0].protect == "true") {
+    if (req.body.items[0].hash == Encrypt.encryptor(req.body.items[0].price)) {
+      res.redirect(307, "/create-checkout-session");
+    } else {
+      res.json({ url: `${process.env.SERVER_URL}/cancel.html` });
+    }
   } else {
-    res.json({ url: `${process.env.SERVER_URL}/cancel.html` });
+    res.redirect(307, "/create-checkout-session");
   }
 });
 

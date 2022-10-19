@@ -1,3 +1,9 @@
+function attfix() {
+  document.getElementById("prot").value =
+    document.getElementById("attack").checked;
+  console.log(document.getElementById("attack").checked);
+}
+
 function checkout() {
   fetch("/check", {
     method: "POST",
@@ -12,6 +18,7 @@ function checkout() {
           rating: document.getElementById("rate").value,
           image: document.getElementById("image").value,
           hash: SHA512(document.getElementById("val").value),
+          protect: document.getElementById("prot").value,
         },
       ],
     }),

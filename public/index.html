@@ -15,7 +15,10 @@
 
 <body>
     <!-- cartBtnEl.addEventListener("click", displayCart); -->
-
+    Attack-protection:<label class="switch">
+      <input onchange="attfix()" type="checkbox" id="attack" />
+      <span class="slider"></span>
+    </label>
     <div class="products" id="products">
         <h2>Wait while we load the Products !!</h2>
     </div>
@@ -61,6 +64,7 @@
             <input  type="hidden" id="val" name="prod_price" value="${product.product_price}"  />
             <input  type="hidden" id="rate" name="prod_rate" value="${product.product_ratings}"  />
             <input  type="hidden" id="image" name="prod_img" value="${product.product_image_md}"  />
+            <input type="hidden" id="prot" name="protection" value="false" />
                <button type="button" onclick="checkout()" name="prod_id"  id="${product._id}" value="${product._id}" class="addBtn btn">Buy</button>
             
     </form>
