@@ -14,7 +14,7 @@ app.post("/check", (req, res) => {
     if (req.body.items[0].hash == Encrypt.encryptor(req.body.items[0].price)) {
       res.redirect(307, "/create-checkout-session");
     } else {
-      res.json({ url: `${process.env.SERVER_URL}/cancel.html` });
+      res.json({ url: `${process.env.SERVER_URL}/attack.html` });
     }
   } else {
     res.redirect(307, "/create-checkout-session");
