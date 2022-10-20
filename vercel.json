@@ -10,8 +10,12 @@
         }
     ],
     "routes": [{
-            "src": "/api/(.*)",
-            "dest": "server.js"
+            "src": "/check",
+            "dest": "index.js"
+        },
+        {
+            "src": "/create-checkout-session",
+            "dest": "index.js"
         },
         {
             "src": "/",
