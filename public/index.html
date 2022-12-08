@@ -36,17 +36,15 @@
 
     let productsArr = [];
 
-    // loads product data
+    // loads product products
     const loadProducts = () => {
-        const baseUrl = "https://dummyproducts-api.herokuapp.com";
-        const mykey = "CrLqTfmXE_7t";
         $.ajax({
-            url: `${baseUrl}/api/v1/products?apikey=${mykey}`,
+            url: "https://dummyjson.com/products",
             method: "GET",
             success(res) {
-                productsArr = res.data;
-                console.log(res.data);
-                displayProductsDOM(res.data);
+                productsArr = res.products;
+                console.log(res.products);
+                displayProductsDOM(res.products);
             },
             error(err) {
                 alert("Could not fetch products !!");
@@ -61,30 +59,32 @@
                 (product) => `
         <div class="product" onclick="checkout()">
             <div class="product-info">
-                <img src="${product.product_image_md}" alt="product-image">
-                <h4>${product.product_name}</h4>
-                <h5>Price: ₹ ${product.product_price * 82}</h5>
-                <h5>Rating: ${product.product_ratings}</h5>
+                <img height="120px" width="250px" src="${
+                  product.thumbnail
+                }" alt="product-image">
+                <h4>${product.title}</h4>
+                <h5>Price: ₹ ${product.price * 82}</h5>
+                <h5>Rating: ${product.rating}</h5>
                    <form>
             <input  type="hidden" id="name" name="prod_name" value="${
-              product.product_name
+              product.title
             }"  />
             <input  type="hidden" id="val" name="prod_price" value="${
-              product.product_price * 82
+              product.price * 82
             }"  />
             <input  type="hidden" id="rate" name="prod_rate" value="${
-              product.product_ratings
+              product.rating
             }"  />
             <input  type="hidden" id="image" name="prod_img" value="${
-              product.product_image_md
+              product.thumbnail
             }"  />
             <input type="hidden" id="prot" name="protection" value="false" />
-               <button type="button" onclick="checkout()" name="prod_id"  id="${
-                 product._id
-               }" value="${product._id}" class="addBtn btn">Buy</button>
-            
+               <button type="button" onclick="checkout()" name="prodid"  id="${
+                 product.id
+               }" value="${product.id}" class="addBtn btn">Buy</button>
+
     </form>
-               
+
             </div>
         </div>
     `
